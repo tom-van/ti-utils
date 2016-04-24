@@ -564,7 +564,7 @@ int prepare_nvs_file(void *arg, char *file_name)
 	unsigned char mac_addr[MAC_ADDR_LEN];
 	struct wl1271_cmd_cal_p2g *pdata;
 	struct wl1271_cmd_cal_p2g old_data[eNUMBER_RADIO_TYPE_PARAMETERS_INFO];
-	char buf[2048];
+	char buf[BUF_SIZE_4_NVS_FILE];
 	unsigned char *p;
 	struct wl12xx_common cmn = {
 		.arch = UNKNOWN_ARCH,
@@ -694,7 +694,7 @@ int prepare_nvs_file(void *arg, char *file_name)
 int create_nvs_file(struct wl12xx_common *cmn)
 {
 	int new_nvs, res = 0;
-	char buf[2048];
+	char buf[BUF_SIZE_4_NVS_FILE];
 
 	/* create new NVS file */
 	new_nvs = open(cmn->nvs_name,
@@ -727,7 +727,7 @@ out:
 int update_nvs_file(const char *nvs_infile, const char *nvs_outfile, struct wl12xx_common *cmn)
 {
 	int new_nvs, res = 0;
-	char buf[2048];
+	char buf[BUF_SIZE_4_NVS_FILE];
 
 	res = read_nvs(nvs_infile, buf, BUF_SIZE_4_NVS_FILE, NULL);
 	if (res)
@@ -764,7 +764,7 @@ out:
 int dump_nvs_file(const char *nvs_file)
 {
 	int sz=0, size;
-	char buf[2048];
+	char buf[BUF_SIZE_4_NVS_FILE];
 	unsigned char *p = (unsigned char *)buf;
 
 	if (read_nvs(nvs_file, buf, BUF_SIZE_4_NVS_FILE, &size))
@@ -786,7 +786,7 @@ int set_nvs_file_autofem(const char *nvs_file, unsigned char val,
 	struct wl12xx_common *cmn)
 {
 	int new_nvs, res = 0;
-	char buf[2048];
+	char buf[BUF_SIZE_4_NVS_FILE];
 	int nvs_file_sz;
 
 	res = read_nvs(nvs_file, buf, BUF_SIZE_4_NVS_FILE, &nvs_file_sz);
@@ -832,7 +832,7 @@ int set_nvs_file_fem_manuf(const char *nvs_file, unsigned char val,
 	struct wl12xx_common *cmn)
 {
 	int new_nvs, res = 0;
-	char buf[2048];
+	char buf[BUF_SIZE_4_NVS_FILE];
 	int nvs_file_sz;
 
 	res = read_nvs(nvs_file, buf, BUF_SIZE_4_NVS_FILE, &nvs_file_sz);
