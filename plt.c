@@ -1091,6 +1091,8 @@ static int plt_autocalibrate(struct nl80211_state *state, struct nl_cb *cb,
 		goto out_removenvs;
 	}
 
+	usleep(1500000);
+
 	res = plt_do_power_on(state, devname);
 	if (res < 0)
 		goto out_rmmod;
